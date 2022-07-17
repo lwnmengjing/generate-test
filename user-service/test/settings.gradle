@@ -1,0 +1,2 @@
+includeBuild '../test-grpc'
+rootProject.name = 'test'

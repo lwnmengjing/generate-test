@@ -1,0 +1,13 @@
+app: matrix-cloud
+service: test
+ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+  - port: 9090
+    targetPort: 9090
+    name: grpc
+metrics:
+  scrape: false
+  path: /metrics/prometheus
+hpa: true

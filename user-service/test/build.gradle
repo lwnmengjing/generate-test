@@ -1,0 +1,48 @@
+plugins {
+    id 'java-library'
+    id "io.freefair.lombok" version "6.3.0"
+    id 'org.springframework.boot' version '2.6.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = 'com.test'
+sourceCompatibility = JavaVersion.VERSION_11
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // inner dependency
+    implementation 'com.test:test-grpc'
+
+    // common dependency
+    implementation 'net.devh:grpc-server-spring-boot-starter:2.13.0.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // test only dependency
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.grpc:grpc-testing:1.43.1'
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+    exclude '**/*IntegrationTest*'
+    useJUnitPlatform()
+}
+
+task integrationTest(type: Test) {
+    testLogging {
+        showStandardStreams = true
+    }
+    useJUnitPlatform()
+}

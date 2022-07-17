@@ -1,0 +1,7 @@
+grpc:
+  client:
+    test:
+      address: 'static://test:9090'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext

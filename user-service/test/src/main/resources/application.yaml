@@ -1,0 +1,13 @@
+grpc:
+  server:
+    port: 9090
+server:
+  port: 8080
+spring:
+  application:
+    name: test
+  profiles:
+    active: ${STAGE:local}
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
